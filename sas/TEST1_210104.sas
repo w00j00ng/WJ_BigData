@@ -1,0 +1,26 @@
+/* 생성된 코드(가져오기) */
+/* 소스 파일: 16년_06월.csv */
+
+/* 코드 생성일: 21. 1. 4. 오후 10:00 */
+
+%web_drop_table(WORK.IMPORT);
+
+FILENAME REFFILE '/home/u49447399/myfiles/skt_m/16년_06월.csv';
+
+PROC IMPORT DATAFILE=REFFILE
+	DBMS=CSV
+	OUT=WORK.IMPORT;
+	GETNAMES=YES;
+RUN;
+
+PROC CONTENTS DATA=WORK.IMPORT; RUN;
+
+%web_open_table(WORK.IMPORT);
+
+DATA WORK.YEAR_16_6;
+	SET WORK.IMPORT;
+RUN;
+
+PROC MEANS DATA = WORK.YEAR_16_6;
+	CLASS 연령대;
+RUN;
